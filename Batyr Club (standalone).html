@@ -13,6 +13,13 @@
 </template>
 </head>
 <body>
+<script data-nav-fix>
+/* Force in-page navigation for relative links: the dc-runtime prototype
+   framework swallows anchor default clicks, so cross-page links did not
+   navigate. Capture phase + explicit location assignment fixes it. */
+(function(){document.addEventListener("click",function(ev){var a=ev.target&&ev.target.closest?ev.target.closest("a[href]"):null;if(!a)return;var href=a.getAttribute("href");if(!href||href.charAt(0)==="#"||/^[a-z]+:/i.test(href))return;ev.preventDefault();window.location.href=a.href;},true);})();
+</script>
+
 <x-dc>
 <helmet>
 <link rel="preconnect" href="https://fonts.googleapis.com">
